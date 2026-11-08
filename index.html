@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Bandini Zero Waste AI</title>    
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <h1>Bandini Zero Waste AI</h1>
+	(based on CLIP Zero-Shot)
+
+  <div id="video-container">
+    <video id="webcam" autoplay playsinline></video>
+  </div>
+
+  <button id="btn-classify" disabled>Inizializzazione Modello...</button>
+  
+  <div id="status">Caricamento libreria e modello CLIP in corso...</div>
+  <div id="result">In attesa di scansione...</div>
+  
+  <!-- Contenitore Flex per i 5 bidoni su riga unica -->
+  <div id="bins-container">
+
+    <!-- 1. Vetro -->
+    <div class="bin-card" id="bin-vetro">
+      <div class="bin-lid close"></div>
+      <div class="bin-body color-vetro text-dark">
+        <img src="img/recycle-white.png" alt="Recycle" class="bin-icon">
+        <span class="bin-label">Vetro</span>
+      </div>
+    </div>
+
+    <!-- 2. Umido -->
+    <div class="bin-card" id="bin-umido">
+      <div class="bin-lid close"></div>
+      <div class="bin-body color-umido text-light">
+        <img src="img/recycle-white.png" alt="Recycle" class="bin-icon">
+        <span class="bin-label">Umido</span>
+      </div>
+    </div>
+
+    <!-- 3. Carta -->
+    <div class="bin-card" id="bin-carta">
+      <div class="bin-lid close"></div>
+      <div class="bin-body color-carta text-dark">
+        <img src="img/recycle-green.png" alt="Recycle" class="bin-icon">
+        <span class="bin-label">Carta</span>
+      </div>
+    </div>
+
+    <!-- 4. Multimateriale -->
+    <div class="bin-card" id="bin-multimateriale">
+      <div class="bin-lid close"></div>
+      <div class="bin-body color-multimateriale text-dark">
+        <img src="img/recycle-white.png" alt="Recycle" class="bin-icon">
+        <span class="bin-label">Multimateriale</span>
+      </div>
+    </div>
+
+    <!-- 5. Indifferenziato -->
+    <div class="bin-card" id="bin-indifferenziato">
+      <div class="bin-lid close"></div>
+      <div class="bin-body color-indifferenziato text-light">
+        <img src="img/recycle-white.png" alt="Recycle" class="bin-icon">
+        <span class="bin-label">Indifferenziato</span>
+      </div>
+    </div>
+
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

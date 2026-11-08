@@ -1,0 +1,8 @@
+RewriteEngine On
+
+# Controlla se la connessione non è protetta tramite i proxy standard (HTTPS header o porta 443)
+RewriteCond %{ENV:HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteCond %{HTTP_HOST} !^localhost
+RewriteCond %{HTTP_HOST} !^127\.0\.0\.1
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

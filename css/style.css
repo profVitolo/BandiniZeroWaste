@@ -1,0 +1,162 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 30px;
+  background-color: #f4f4f9;
+}
+#video-container {
+  position: relative;
+  border: 3px solid #333;
+  border-radius: 8px;
+  overflow: hidden;
+}
+video {
+  display: block;
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+}
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+}
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+#status {
+  font-weight: bold;
+  color: #555;
+}
+#result {
+  font-size: 22px;
+  font-weight: bold;
+  color: #2e7d32;
+  padding: 10px 20px;
+  border: 2px dashed #2e7d32;
+  border-radius: 5px;
+  background-color: #e8f5e9;
+}
+
+/* ===================================================
+   LAYOUT E STILE BIDONI (Bandini Zero Waste AI)
+   =================================================== */
+
+#bins-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 20px;
+  width: 95%;
+  max-width: 1000px;
+  margin-top: 50px;
+}
+
+/* Struttura singola scheda bidone */
+.bin-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 70px;
+  max-width: 180px;
+}
+
+/* ---------------------------------------------------------------
+   COPERCHIO: Trapezio isoscele basso poggiato su base maggiore
+   --------------------------------------------------------------- */
+.bin-lid {
+  width: 100%;
+  /* Mantiene un rapporto di altezza fisso rispetto alla larghezza del coperchio */
+  aspect-ratio: 7 / 1; 
+  background-color: #333333;
+  clip-path: polygon(0% 100%, 15% 0%, 85% 0%, 100% 100%);
+  transform-origin: bottom center;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  margin-bottom: 2px;
+}
+
+/* Stato CLOSE: coperchio normale */
+.bin-lid.close {
+  transform: scaleY(1);
+}
+
+/* Stato OPEN: Flip verticale e Stretch del 300% */
+.bin-lid.open {
+  transform: translateY(-300%) scaleY(-3);
+}
+
+
+/* --------------------------------------------------------------------
+   CORPO BIDONE: Trapezio isoscele allungato poggiato su base minore
+   -------------------------------------------------------------------- */
+.bin-body {
+  width: 100%;
+  aspect-ratio: 3 / 4; /* <-- QUESTO BLOCCA LE PROPORZIONI (Larghezza / Altezza) */
+  clip-path: polygon(0% 0%, 100% 0%, 82% 100%, 18% 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 5px;
+  box-sizing: border-box;
+}
+
+/* Icona e Testo scalabili con clamp() per evitare che diventino troppo grandi o piccoli */
+.bin-icon {
+  width: clamp(25px, 25vw, 45px);
+  height: clamp(25px, 25vw, 45px);
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.bin-label {
+  font-weight: bold;
+  font-size: clamp(10px, 1.2vw, 14px); /* Il font si adatta fluidamente alla pagina */
+  text-align: center;
+  text-transform: uppercase;
+  word-break: break-word;
+}
+
+/* ---------------------------------------------------
+   COLORI SPECIFICI ED ERGONOMIA VISIVA
+   --------------------------------------------------- */
+.color-vetro {
+  background-color: #2e7d32; /* Verde */
+}
+
+.color-umido {
+  background-color: #5d4037; /* Marrone */
+}
+
+.color-carta {
+  background-color: #ffffff; /* Bianco */
+  border: 1px solid #ccc; /* Bordo leggero per contrasto */
+}
+
+.color-multimateriale {
+  background-color: #e6b800; /* Giallo-Ocra */
+}
+
+.color-indifferenziato {
+  background-color: #555555; /* Grigio Scuro */
+}
+
+/* Colori del testo in base allo sfondo per massimizzare la leggibilità */
+.text-light .bin-label {
+  color: #ffffff;
+}
+
+.text-dark .bin-label {
+  color: #111111;
+}
