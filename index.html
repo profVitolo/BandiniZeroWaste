@@ -12,13 +12,41 @@
 
   <div id="video-container">
     <video id="webcam" autoplay playsinline></video>
+    <button id="btn-switch-camera" title="Cambia fotocamera" class="hidden" aria-label="Cambia fotocamera" tabindex="0">🔄</button>
   </div>
 
   <button id="btn-classify" disabled>Inizializzazione Modello...</button>
   
-  <div id="status">Caricamento libreria e modello CLIP in corso...</div>
+  <div id="status" aria-live="polite" aria-atomic="true">Caricamento libreria e modello CLIP in corso...</div>
   <div id="result">In attesa di scansione...</div>
-  
+
+  <!-- Bottone Aiutami a imparare -->
+  <button id="btn-help" class="hidden">Aiutami a imparare</button>
+
+  <!-- Modal Aiuto Umano -->
+  <div id="modal-help" class="hidden">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <button class="modal-close-btn" aria-label="Chiudi">&times;</button>
+      <h2>Aiuto Umano</h2>
+      <p class="modal-educational">Usa parole chiave in inglese, non frasi complete. Esempio: <em>"plastic bottle water"</em> invece di <em>"This is a plastic bottle for water"</em>.</p>
+      <form id="help-form">
+        <div class="form-group">
+          <label for="help-description">Descrizione (in inglese):</label>
+          <input type="text" id="help-description" placeholder="Es: red plastic cup" required>
+        </div>
+        <div class="form-group">
+          <label for="help-category">Categoria:</label>
+          <select id="help-category" required>
+            <option value="">Seleziona...</option>
+          </select>
+        </div>
+        <button type="submit">Invia</button>
+      </form>
+      <div id="modal-feedback"></div>
+    </div>
+  </div>
+
   <!-- Contenitore Flex per i 5 bidoni su riga unica -->
   <div id="bins-container">
 
