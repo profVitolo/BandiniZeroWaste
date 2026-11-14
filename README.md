@@ -26,6 +26,19 @@ L'applicazione è un frontend web statico che utilizza il modello CLIP (`Xenova/
 
 L'interfaccia mostra una webcam, un pulsante di classificazione e una serie di **bidoni** animati (coperchio che si apre con un effetto di flip): Vetro, Umido, Carta, Multimateriale e Indifferenziato, ognuno con colore e icona dedicata.
 
+## ✅ Checklist Test Manuale (RF7)
+
+Prima di ogni release, eseguire i seguenti test manuali nel browser:
+
+- [ ] **Avvio su desktop** — Webcam attiva, modello CLIP caricato, prompt visualizzati, pulsante "Classifica Rifiuto" abilitato, pulsante cambio fotocamera **nascosto** (solo 1 dispositivo video)
+- [ ] **Avvio su mobile** — Webcam posteriore (`environment`) attiva, pulsante cambio fotocamera **visibile**, modello CLIP caricato
+- [ ] **Classificazione oggetto noto** — Inquadrare un oggetto classificabile → risultato verde con categoria, bidone corretto si apre con animazione, hitpoint incrementato, countdown 5 secondi
+- [ ] **Classificazione oggetto ignoto** — Inquadrare un oggetto non riconosciuto → risultato arancione "NON CLASSIFICATO", pulsante "Aiutami a imparare" visibile
+- [ ] **Aggiunta entry nuova** — Click su "Aiutami a imparare" → modale si apre → inserire descrizione in inglese + categoria → salvare → messaggio successo, modale si chiude, prompt ricaricati
+- [ ] **Aggiunta entry duplicata** — Inserire una descrizione già esistente → messaggio errore nella modale (HTTP 409), modale rimane aperta
+- [ ] **Cambio camera** — Click su 🔄 → su mobile cambia tra anteriore/posteriore, su desktop cicla tra dispositivi disponibili, animazione feedback, stream aggiornato senza bloccare la classificazione
+- [ ] **Nessun errore in console** — Durante tutto il flusso, DevTools Console non mostra errori (warning non bloccanti sono accettati)
+
 ## 🚀 Evoluzione futura
 
 - **Classificazione assistita**: quando la confidenza del modello è bassa, viene aperta una richiesta di aiuto all'utente, che fornisce una **descrizione in inglese** dell'oggetto e la categoria di destinazione.
